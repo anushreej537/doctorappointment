@@ -13,3 +13,10 @@ class Doctor(models.Model):
     date =models.DateField()
     speciality = models.CharField(max_length=250)
     
+
+class Patient(models.Model):
+    ptname = models.CharField(max_length=250)
+    mobileno = models.IntegerField()
+    ptime = models.TimeField()
+    pdate = models.DateField()
+    doctoravail = models.ForeignKey(Doctor,on_delete=models.CASCADE)

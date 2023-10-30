@@ -9,4 +9,6 @@ urlpatterns = [
     path('dashboard/',views.dashboard),
     # path('table/',views.table),
     path('admin_data/',views.admin_data),
+    path('patientadd/',views.patientadd),
+    path('doctorshow/',views.doctorshow)
 ]

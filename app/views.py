@@ -49,8 +49,7 @@ def login_user(request):
 
 
 def dashboard(request):
-    data1 = Doctor.objects.all()
-    return render(request,'dashboard.html',{'data1':data1})
+    return render(request,'dashboard.html')
 
 # def table(request):
 #     return render(request,'table.html')
@@ -65,3 +64,20 @@ def admin_data(request):
     data1 = Doctor.objects.all()
     return render(request,'admin_view.html',{'data1':data1})
     
+
+def patientadd(request):
+    doctor = Doctor.objects.all()
+    return render(request,'patientadd.html',{'doctor':doctor})
+
+def doctorshow(request):
+    if request.method == 'POST':
+        ptname = request.POST['ptname']
+        mobileno = request.POST['mobileno']
+        pdate = request.POST['pdate']
+        ptime = request.POST['ptime']
+        doctorid = request.POST['doctoravai']
+        doc_avai = Doctor.objects.get(id=doctorid)
+        Patient.objects.create(ptname=ptname,mobileno=mobileno,pdate=pdate,ptime=ptime,doctoravail=doc_avai)
+        messages.error(request,'your appointment confirm')
+    return redirect('/dashboard/')
+
